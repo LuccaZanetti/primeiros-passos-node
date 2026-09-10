@@ -1,0 +1,315 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-09-10T00:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2024.1.0",
+  "resources": [
+    {
+      "_id": "wrk_primeiros_passos_node",
+      "parentId": null,
+      "modified": 1757193600000,
+      "created": 1757193600000,
+      "name": "Primeiros Passos Node",
+      "description": "API REST de produtos com autenticação, upload e Swagger",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "env_base",
+      "parentId": "wrk_primeiros_passos_node",
+      "modified": 1757193600000,
+      "created": 1757193600000,
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:3000",
+        "token": ""
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "base_url",
+          "token"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 0,
+      "_type": "environment"
+    },
+    {
+      "_id": "fld_autenticacao",
+      "parentId": "wrk_primeiros_passos_node",
+      "modified": 1757193600000,
+      "created": 1757193600000,
+      "name": "Autenticação",
+      "description": "Rotas de cadastro e login",
+      "environment": {},
+      "metaSortKey": -100,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_produtos",
+      "parentId": "wrk_primeiros_passos_node",
+      "modified": 1757193600000,
+      "created": 1757193600000,
+      "name": "Produtos",
+      "description": "CRUD de produtos com autenticação e upload",
+      "environment": {},
+      "metaSortKey": 0,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_register",
+      "parentId": "fld_autenticacao",
+      "modified": 1757193600000,
+      "created": 1757193600000,
+      "url": "{{ _.base_url }}/usuarios/register",
+      "name": "Cadastro de usuário",
+      "description": "Cria um novo usuário",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Maria Silva\",\n  \"email\": \"maria@email.com\",\n  \"senha\": \"123456\"\n}\n"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -100,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_login",
+      "parentId": "fld_autenticacao",
+      "modified": 1757193600000,
+      "created": 1757193600000,
+      "url": "{{ _.base_url }}/usuarios/login",
+      "name": "Login do usuário",
+      "description": "Autentica e retorna o token JWT",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"maria@email.com\",\n  \"senha\": \"123456\"\n}\n"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -99,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_listar_produtos",
+      "parentId": "fld_produtos",
+      "modified": 1757193600000,
+      "created": 1757193600000,
+      "url": "{{ _.base_url }}/produtos",
+      "name": "Listar produtos",
+      "description": "Lista todos os produtos cadastrados",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -100,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_cadastrar_produto",
+      "parentId": "fld_produtos",
+      "modified": 1757193600000,
+      "created": 1757193600000,
+      "url": "{{ _.base_url }}/produtos",
+      "name": "Cadastrar produto",
+      "description": "Cria um novo produto",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Teclado Mecânico\",\n  \"categoria\": \"Periféricos\",\n  \"preco\": 299.9,\n  \"estoque\": 12,\n  \"descricao\": \"Teclado com switch mecânico\"\n}\n"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -99,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_buscar_produto",
+      "parentId": "fld_produtos",
+      "modified": 1757193600000,
+      "created": 1757193600000,
+      "url": "{{ _.base_url }}/produtos/1",
+      "name": "Buscar produto por ID",
+      "description": "Busca um produto específico pelo id",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -98,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_atualizar_produto",
+      "parentId": "fld_produtos",
+      "modified": 1757193600000,
+      "created": 1757193600000,
+      "url": "{{ _.base_url }}/produtos/1",
+      "name": "Atualizar produto",
+      "description": "Atualiza os dados de um produto pelo id",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Teclado Mecânico Pro\",\n  \"categoria\": \"Periféricos\",\n  \"preco\": 349.9,\n  \"estoque\": 8,\n  \"descricao\": \"Teclado mecânico premium\"\n}\n"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -97,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_excluir_produto",
+      "parentId": "fld_produtos",
+      "modified": 1757193600000,
+      "created": 1757193600000,
+      "url": "{{ _.base_url }}/produtos/1",
+      "name": "Excluir produto",
+      "description": "Remove um produto pelo id",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -96,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_upload_imagem",
+      "parentId": "fld_produtos",
+      "modified": 1757193600000,
+      "created": 1757193600000,
+      "url": "{{ _.base_url }}/produtos/1/upload",
+      "name": "Upload de imagem",
+      "description": "Envia uma imagem para o produto",
+      "method": "POST",
+      "body": {
+        "mimeType": "multipart/form-data",
+        "params": [
+          {
+            "name": "imagem",
+            "value": "",
+            "description": "Selecione uma imagem",
+            "type": "file"
+          }
+        ]
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -95,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    }
+  ]
+}
